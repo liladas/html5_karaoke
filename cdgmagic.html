@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://cdgmagic.sourceforge.net/html5_cdgplayer/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<meta name="description" content="Possibly the first and only HTML5/JavaScript CD+G player, showing example content created with free, open source CD+Graphics Magic.">
+
+<title>Testing CD+Graphics Magic :: HTML5 CD+G Player</title>
+
+<style type="text/css">
+body  { background-color:#eeeeee; font-family:arial,sans-serif; }
+.right_content  { clear:right; text-align:left; font-size:0.8em;
+                  padding:1em; 
+</style>
+
+<script src="./cdgmagic_files/cdgmagic_cdgplayer.js"></script>
+<script src="./cdgmagic_files/cdgmagic_cdgdecoder_lowresource.js"></script>
+
+<script type="text/javascript">
+
+function Start_CDGPlayer()
+{
+    CDG_Player_init( "cdg_audio", "cdg_canvas", "cdg_border", "cdg_status" );
+};
+
+var zoom_mode = 0;
+function toggle_2x_mode()
+{
+    zoom_mode = (~zoom_mode) & 0x01;
+    var brdr = document.getElementById("cdg_border");
+    var cnvs = document.getElementById("cdg_canvas");
+    var audi = document.getElementById("cdg_audio");
+    brdr.style.width  = (zoom_mode) ? 648 + "px" : 324 + "px";
+    cnvs.style.width  = (zoom_mode) ? 576 + "px" : 288 + "px";
+    brdr.style.height = (zoom_mode) ? 432 + "px" : 216 + "px";
+    cnvs.style.height = (zoom_mode) ? 384 + "px" : 192 + "px";
+    cnvs.style.padding= (zoom_mode) ?  24 + "px" :  12 + "px";
+    audi.style.width  = (zoom_mode) ? 648 + "px" : 324 + "px";
+};
+</script>
+
+</head>
+
+<body onload="Start_CDGPlayer()" >
+
+    <div class="right_content">
+        <!-- Note: The audio player is above media display because some default interfaces have controls that extend past the top of the player. -->
+        <audio id="cdg_audio" style="width:324px">
+        To use the JavaScript Subcode Graphics Player,<br>you must use an HTML5 audio/canvas compatible browser. [audio]
+        </audio>
+
+        <div id="cdg_border" style="width:324px; height:216px; background-color:#000000;" ondblclick="toggle_2x_mode();">
+        	<canvas id="cdg_canvas" width="288" height="192" style="padding:12px"><!--style="image-rendering: optimizeSpeed"-->
+            To use the JavaScript Subcode Graphics Player,<br>you must use an HTML5 audio/canvas compatible browser. [canvas]
+            </canvas>
+        </div>
+
+        <div id="cdg_status" style="width:320px; padding:2px; margin:4px; text-align:left; font-family:arial; font-size:1.0em/*0.8em*/; color:#00dddd; background-color:#444444">
+        Please select a file to play...
+        </div>
+
+        <select onchange="set_file_prefix(this.value)" size="1" style="width:324px; margin:0px; color:#00dddd; background-color:#444444">
+            <option value=""></option>
+            <option value="Bright_Eyes_First_Day_Of_My_Life:Bright_Eyes_First_Day_Of_My_Life">Bright Eyes - First Day of My Life</option>
+        </select>
+        </center>
+    </div><!--end right_content-->
+
+</body></html>
