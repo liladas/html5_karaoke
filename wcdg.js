@@ -581,7 +581,7 @@ CDGPlayer.prototype.playerTicks = function() {
 CDGPlayer.prototype.play = function() {
     this.startTime = this.rawTicks();
     var thisPlayer = this;
-    this.updater = setInterval(function() {thisPlayer.update();}, .3);
+    this.updater = setInterval(function() {thisPlayer.update();}, 50);
 };
 
 CDGPlayer.prototype.stop = function() {
@@ -593,7 +593,7 @@ CDGPlayer.prototype.stop = function() {
 CDGPlayer.prototype.update = function() {
     if (this.pc >= 0) {
         var now = this.playerTicks();
-        var pcForNow = 4*Math.floor(1*now/1); 
+        var pcForNow = 4*Math.floor(3*now/40); 
         var ffAmt = pcForNow - this.pc;
         if (ffAmt > 0) {
             this.fastForward(ffAmt);
